@@ -17,6 +17,6 @@ st='    WSGIDaemonProcess flaskapp threads=5
         </Directory>
 '
 
-echo "$st" |sed  '/DocumentRoot\ \/var\/www\/html/ r /dev/stdin' "/etc/apache2/sites-enabled/000-default.conf"
+echo "$st" |sed -i '/DocumentRoot\ \/var\/www\/html/ r /dev/stdin' "/etc/apache2/sites-enabled/000-default.conf"
 sudo service apache2 restart
 
