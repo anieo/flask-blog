@@ -21,7 +21,6 @@ st='<VirtualHost *:80>
 </VirtualHost>
 '
 sudo systemctl start httpd  
-sudo pip install virtualenv
 # echo "$st" |sed -i '/DocumentRoot\ \/var\/www\/html/ r /dev/stdin' "/etc/apache2/sites-enabled/000-default.conf"
-sudo echo "$st" >/etc/httpd/conf/httpd.conf
+sudo bash -c "echo \"$st\" >/etc/httpd/conf/httpd.conf"
 sudo service httpd restart
