@@ -4,4 +4,4 @@ yum -y install python34 python34-pip
 
 sudo yum -y install python34 python34-devel python34-pip mod_proxy_uwsgi gcc
 sudo pip3 install --upgrade pip
-sudo pip3 install virtualenv flask uwsgis
+sudo pip3 install virtualenv flask uwsgi
