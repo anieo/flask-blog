@@ -1,12 +1,11 @@
 #!/bin/bash
 # Create the unprivileged user
 sudo adduser flask-blog
-sudo passwd flask-blog
-sudo su flask-blog
+# sudo passwd flask-blog
 
 # Create our project directory
-cd
-git clone https://github.com/anieo/flask-blog 
+cd ~flask-blog/
+sudo -u flask-blog git clone https://github.com/anieo/flask-blog 
 cd flask-blog
 
 # init and activate a python-virtualenv with prereqs
