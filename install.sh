@@ -5,17 +5,23 @@ sudo yum install mod_wsgi -y
 sudo yum install python3 -y 
 pip3 install -U flask email_validator Flask-WTF
 sudo yum install git -y
-git clone https://github.com/anieo/flask-blog /var/www/html/flask-blog
-st='    WSGIDaemonProcess flaskapp threads=5
-        WSGIScriptAlias / /var/www/html/flaskapp/flaskapp.wsgi
-        
-        <Directory flaskapp>
-                WSGIProcessGroup flaskapp
-                WSGIApplicationGroup %{GLOBAL}
-                Order deny,allow
-                Allow from all
-        </Directory>
-'
+sudo git clone https://github.com/anieo/flask-blog /var/www/html/flask-blog
+st='<VirtualHost *:80>
 
-echo "$st" |sed -i '/DocumentRoot\ \/var\/www\/html/ r /dev/stdin' "/etc/apache2/sites-enabled/000-default.conf"
+     ServerName localhost
+
+     WSGIDaemonProcess hitme user=apache group=apache threads=2
+
+     WSGIScriptAlias / /var/www/hitme/wsgi.py
+
+     <Directory /var/www/hitme>
+         Require all granted
+     </Directory>
+
+</VirtualHost>
+'
+sudo systemctl start httpd  
+sudo pip install virtualenv
+# echo "$st" |sed -i '/DocumentRoot\ \/var\/www\/html/ r /dev/stdin' "/etc/apache2/sites-enabled/000-default.conf"
+sudo echo "$st" >/etc/httpd/conf/httpd.conf
 sudo service httpd restart
